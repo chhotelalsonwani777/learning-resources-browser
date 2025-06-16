@@ -15,15 +15,13 @@ footer a {
   transition: color 0.3s ease;
 }
 
-
 .custom-sticky {
   position: fixed;
   top: 100px;
-  width: inherit;
-  max-width: 100%;
   z-index: 999;
   transition: all 0.3s ease-in-out;
 }
+
 
 
 

@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Filters({ filters, setFilters }) {
-
   const [isSticky, setIsSticky] = useState(false);
+  const [stickyWidth, setStickyWidth] = useState(null);
+
+  const ref = useRef(null);
 
   const categories = ["Language", "Math", "Science"];
   const types = ["Video", "Article"];
@@ -10,12 +12,19 @@ function Filters({ filters, setFilters }) {
 
 
   const handleScroll = () => {
-    setIsSticky(window.scrollY > 200); // 👈 Triggers after 200px scroll
+    if (window.scrollY > 200) {
+      setIsSticky(true);
+      if (ref.current) {
+        setStickyWidth(ref.current.offsetWidth);
+      }
+    } else {
+      setIsSticky(false);
+    }
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
 
@@ -30,7 +39,7 @@ function Filters({ filters, setFilters }) {
   return (
 
 
-    <div className={`filters-card bg-white rounded   ${isSticky ? 'custom-sticky' : ''}`}>
+    <div ref={ref} className={`filters-card bg-white rounded  ${isSticky ? "custom-sticky" : ""}`} style={isSticky ? { width: stickyWidth } : {}} >
       <h5 className="mb-3">Filter Resources</h5>
 
       <label className="fw-semibold mb-1">Category</label>
