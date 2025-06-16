@@ -1,11 +1,11 @@
-/* Smooth hover effect for nav and footer links */
 .navbar-nav .nav-link:hover,
 footer a:hover {
   color: #ffde00 !important;
-  /* Accent green */
   text-decoration: underline;
   transition: color 0.3s ease;
 }
+
+
 
 .list-unstyled ul a {
   margin-top: 10px !important;
@@ -14,6 +14,18 @@ footer a:hover {
 footer a {
   transition: color 0.3s ease;
 }
+
+
+.custom-sticky {
+  position: fixed;
+  top: 100px;
+  width: inherit;
+  max-width: 100%;
+  z-index: 999;
+  transition: all 0.3s ease-in-out;
+}
+
+
 
 @media (max-width: 768px) {
   .navbar form {

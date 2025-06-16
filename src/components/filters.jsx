@@ -1,6 +1,23 @@
+import { useEffect, useState } from "react";
+
 function Filters({ filters, setFilters }) {
+
+  const [isSticky, setIsSticky] = useState(false);
+
   const categories = ["Language", "Math", "Science"];
   const types = ["Video", "Article"];
+
+
+
+  const handleScroll = () => {
+    setIsSticky(window.scrollY > 200); // 👈 Triggers after 200px scroll
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
 
   const handleCategoryChange = (e) => {
     setFilters(prev => ({ ...prev, category: e.target.value }));
@@ -11,7 +28,9 @@ function Filters({ filters, setFilters }) {
   };
 
   return (
-    <div className="filters-card sticky-top  bg-white rounded  mt-4">
+
+
+    <div className={`filters-card bg-white rounded   ${isSticky ? 'custom-sticky' : ''}`}>
       <h5 className="mb-3">Filter Resources</h5>
 
       <label className="fw-semibold mb-1">Category</label>
