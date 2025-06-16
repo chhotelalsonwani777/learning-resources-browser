@@ -1,0 +1,17 @@
+:root {
+  --primary-color: #2563EB;
+  --accent-color: #10B981;
+  --dark-bg: #1E293B;
+  --light-text: #F1F5F9;
+  --text-color: #0F172A;
+}
+
+.btn-accent {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+}
+
+.btn-accent:hover {
+  background-color: #0f9f6e;
+}
